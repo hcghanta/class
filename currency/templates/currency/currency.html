@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+{%  block content  %}
+    <div class="container">
+        <h1 class="title">UNO Social Currency Convertor</h1>
+    </div>
+
+    <body class="section">
+        <div class="container">
+
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        {% csrf_token %}
+
+
+                                {{ form }}
+                            <br><br><br><br><br><br><br>
+
+                            <button type="submit" class="btn-primary">
+                                Submit
+                            </button>
+
+
+                    </form>
+                </div>
+
+        </div>
+        <div class="row">
+            <a href="{% url 'currency:currency_table' %}" class="column is-offset-8 is-8"><span
+                    class="btn btn-primary">See Conversion Values</span></a>
+
+
+        </div>
+  {% endblock %}

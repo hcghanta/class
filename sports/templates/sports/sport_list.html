@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% block content %}
+            <p ALIGN="center"><b>GO MAVERICKS!</b></p>
+                <div class="links">
+                    <!-- Example row of columns -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h2>Cricket</h2>
+                                    <p></p>
+
+                                    <p>Take a look at the latest cricket games!</p>
+                                        <p><a class="btn btn-primary" href="{% url 'sports:sport_cricket' %}"
+                                              role="button">View
+                                            Cricket games &raquo;</a></p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+
+                                <div class="caption">
+                                    <h2>NBA</h2>
+
+                                    <p>Get latest information on the NBA games online</p>
+                                    <p><a class="btn btn-primary" href="{% url 'sports:sport_nba' %}"
+                                           role="button">View
+                                        NBA Games &raquo;</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

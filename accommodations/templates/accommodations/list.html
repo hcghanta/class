@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Accommodations{% endif %}
+{% endblock %}
+
+{% block content %}
+    <div id="sidebar">
+        <h3>Categories</h3>
+        <ul>
+            <li {% if not category %}class="selected"{% endif %}>
+                <a href="{% url "accommodations:accommodation_list" %}">All</a>
+            </li>
+            {% for c in categories %}
+                 <li {% if category.slug == c.slug %}class="selected"
+                {% endif %}>
+                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if user.is_authenticated %}
+    <div id="main" class="product-list">
+        <h1>{% if category %}{{ category.name }}{% else %}Accommodations
+        {% endif %}</h1>
+        {% for accommodation in accommodations %}
+            <div class="item">
+                <a href="{{ accommodation.get_absolute_url }}">
+                    <img src="{% if accommodation.image %}{{ accommodation.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+                <a href="{{ accommodation.get_absolute_url }}">{{ accommodation.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>Only registered users can view the accommodations. You can <a href="{% url "login" %}">Log-in</a> here</p>
+    {% endif %}
+{% endblock %}

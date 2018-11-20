@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <h2 style=""padding-left :15px">Currency Information</h2>
+</div>
+<div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr class="bg-info">
+            <th>Currency Symbol</th>
+            <th>Value Entered</th>
+            <th>Value per USD</th>
+            <th>Total Amount</th>
+
+            <th colspan="3">Actions</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>{{ currency.symbol }}</td>
+                <td>{{ currency.value_convert}}</td>
+                <td>{{ new_currency_response }}</td>
+                <td>{{ new_overall_response}}</td>
+                <td><a href="{%url 'currency:currency_delete' pk=currency.pk %}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a></td>
+
+
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+        </div>
+</div>
+</body>
+</html>
+{% endblock %}

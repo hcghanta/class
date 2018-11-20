@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Events{% endif %}
+{% endblock %}
+
+{% block content %}
+    <div id="sidebar">
+        <h3>Categories</h3>
+        <ul>
+            <li {% if not category %}class="selected"{% endif %}>
+                <a href="{% url "events:event_list" %}">All</a>
+            </li>
+            {% for c in categories %}
+                 <li {% if category.slug == c.slug %}class="selected"
+                {% endif %}>
+                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if user.is_authenticated %}
+    <div id="main" class="product-list">
+        <h1>{% if category %}{{ category.name }}{% else %}Events
+            <a class="btn btn-primary" href="{% url 'events:event_new' %}"
+                                           role="button" style="float:right">Add Event</a>
+        {% endif %}</h1>
+        {% for event in events %}
+            <div class="item">
+                <a href="{{ event.get_absolute_url }}">
+                    <img src="{% if event.image %}{{ event.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+                <a href="{{ event.get_absolute_url }}">{{ event.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>Only registered users can view the events. You can <a href="{% url "login" %}">Log-in</a> here</p>
+    {% endif %}
+{% endblock %}

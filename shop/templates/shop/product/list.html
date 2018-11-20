@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
+{% block content %}
+    <div id="sidebar">
+        <h3>Categories</h3>
+        <ul>
+            <li {% if not category %}class="selected"{% endif %}>
+                <a href="{% url "shop:product_list" %}">All</a>
+            </li>
+            {% for c in categories %}
+                 <li {% if category.slug == c.slug %}class="selected"
+                {% endif %}>
+                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div><br>
+<div class="row">
+            <a href="{% url 'currency:currency_list' %}" class="column is-offset-8 is-8"><span
+                    class="btn btn-primary">Currency Converter</span></a>
+
+
+        </div>
+{% if user.is_authenticated %}
+    <div id="main" class="product-list">
+        <h1>{% if category %}{{ category.name }}{% else %}Products
+        {% endif %}</h1>
+        {% for product in products %}
+            <div class="item">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                <br>
+                ${{ product.price }}
+            </div>
+        {% endfor %}
+		{% else %}
+        <p>Only registered users can view the Merchandise. You can <a href="{% url "login" %}">Log-in</a> here</p>
+    </div>
+	{% endif %}
+{% endblock %}

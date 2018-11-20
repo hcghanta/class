@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    {{ accommodation.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="product-detail">
+        <img src="{% if accommodation.image %}{{ accommodation.image.url }} {% else %} {% static "img/no_image.png" %}{% endif %}">
+        <h1>{{ accommodation.name }}</h1>
+        <p class="price">$Cost: {{ accommodation.price }}/person</p>
+        <p class="description">{{ accommodation.description }}</p>
+        <p class="description">Location: {{ accommodation.location }}</p>
+        <div>
+        <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQ4UDZ1w3kcediwZsNn4uABuNY7DMkCLk
+            &q={{ accommodation.location }}" allowfullscreen>
+        </iframe>
+        </div>
+
+    </div>
+{% endblock %}

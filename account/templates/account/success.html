@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success Login</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <p>Welcome User - {{ user.username }} !!!</p>
+    {% endif %}
+
+    <h1>User should be shown above with user name</h1>
+
+</body>
+</html>

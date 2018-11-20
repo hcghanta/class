@@ -1,0 +1,85 @@
+
+{% extends "base.html" %}
+
+{% block title %}Welcome to UNO Social{% endblock %}
+
+
+<html lang="en">
+<body id="app-layout">
+    <h1>Welcome to UNO Social</h1>
+
+    <p>UNO Social is a social networking website and one stop shop for shopping for merchandise, viewing the available dorm accommodation, events and knowing about the weather!</p>
+    <div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% block content %}
+            <p ALIGN="center"><b>GO MAVERICKS!</b></p>
+                <div class="links">
+                    <!-- Example row of columns -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h2>Merchandise</h2>
+                                    <p></p>
+                                    <img src="static/images/merchandise.jpg" alt="merchandise"/>
+                                    <p>Look at the latest UNO Merchandise Available online!</p>
+                                        <p><a class="btn btn-primary" href="{% url 'shop:product_list' %}"
+                                              role="button">View
+                                            Merchandise &raquo;</a></p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+
+                                <div class="caption">
+                                    <h2>Dorm Accommodations</h2>
+                                    <img src="static/images/accommodation_1.jpg" alt="accommodations"/>
+                                    <p>Get information on the available accommodations online!</p>
+                                    <p><a class="btn btn-primary" href="{% url 'accommodations:accommodation_list' %}"
+                                           role="button">View
+                                        Accommodations &raquo;</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+
+                                <div class="caption">
+                                    <h2>UNO Events</h2>
+                                    <img src="static/images/events_1.jpg" alt="events"/>
+                                    <p>Know more about the Events happening at UNO!</p>
+                                    <p><a class="btn btn-primary" href="{% url 'events:event_list' %}"
+                                           role="button">View
+                                        Events &raquo;</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <h2>Weather</h2>
+                                <img src="static/images/weather.jpg" alt="weather"/>
+
+                                <div class="caption">
+
+                                    <p>Look at the weather conditions in your city!</p>
+                                    <p><a class="btn btn-primary" href="{% url 'weather:weather_list' %}" role="button">View
+                                        Weather &raquo;</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        </div>
+    {% endblock %}
+    </div>
+    </div>
+</body>
+</html>
+
+
+
